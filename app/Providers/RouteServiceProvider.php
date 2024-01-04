@@ -35,6 +35,12 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            // backoffice routes
+            Route::middleware(['backoffice', 'auth', 'verified'])
+                ->prefix('backoffice')
+                ->as('backoffice.')
+                ->group(base_path('routes/backoffice.php'));
         });
     }
 }
