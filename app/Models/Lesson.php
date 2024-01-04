@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Lesson extends Model
+class Lesson extends Base\Lesson
 {
-    use HasFactory;
+    public function lessonType(): BelongsTo
+    {
+        return $this->belongsTo(LessonType::class, 'lesson_type_id', 'lesson_type_id');
+    }
+
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'course_id', 'course_id');
+    }
 }
