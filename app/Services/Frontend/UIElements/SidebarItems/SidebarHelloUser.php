@@ -12,7 +12,10 @@ class SidebarHelloUser implements SidebarItem
     {
         return [
             'component' => self::COMPONENT,
-            'text' => __('Hola, :name', ['name' => auth()->user()->name]),
+            'props' => [
+                'text' => __('Hola, :name', ['name' => auth()->user()->name]),
+            ]
+
         ];
     }
 }
