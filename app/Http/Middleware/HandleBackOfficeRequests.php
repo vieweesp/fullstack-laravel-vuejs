@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HandleBackOfficeRequests
 {
+    public function __construct(protected readonly SidebarGenerator $sidebarGenerator)
+    {
+    }
 
     public function handle(Request $request, Closure $next): Response
     {
@@ -23,9 +26,25 @@ class HandleBackOfficeRequests
             'logout_url' => route('logout'),
         ]);
 
-        view()->share('sidebarNavItems', [
-
-        ]);
+        view()->share('sidebarNavItems', $this->sidebarGenerator
+            ->addSidebarItem(new SidebarHelloUser())
+            ->addSidebarItem(
+                new SidebarLink(
+                    text: 'Dashboard',
+                    href: route('backoffice.dashboard.index'),
+                    iconComponent: Heroicons::HOME,
+                    current: request()->routeIs('backoffice.dashboard.index'),
+                )
+            )->addSidebarItem(new SidebarSeparator())
+            ->addSidebarItem(
+                new SidebarLink(
+                    text:__('Cerrar sesi�n'),
+                    href: route('logout'),
+                    iconComponent: Heroicons::LOGOUT,
+                    current: false,
+                )
+            )
+        );
 
         return $next($request);
     }
