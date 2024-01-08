@@ -1,7 +1,11 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
+import { createApp } from 'vue';
+import App from '@/components/App.vue';
 
-window.Alpine = Alpine;
+import DashboardPage from "@/pages/backoffice/dashboard/DashboardPage.vue";
 
-Alpine.start();
+const app = createApp(App);
+
+app.component('dashboard-page', DashboardPage);
+app.mount('#app');
