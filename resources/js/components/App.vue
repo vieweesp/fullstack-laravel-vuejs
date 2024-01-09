@@ -1,13 +1,12 @@
 <script>
 import {defineAsyncComponent} from "vue";
 
-const BackOfficeLayout = defineAsyncComponent(() => import('@/layouts/BackOfficeLayout.vue'));
+const BackOfficeLayout = defineAsyncComponent(() => import('@/layouts/BackofficeLayout.vue'));
 
 export default {
     name: 'App',
     components: {
-
-        BackOfficeLayout,
+        BackofficeLayout,
     },
 
     setup() {

@@ -38,12 +38,12 @@ class HandleBackOfficeRequests
             )->addSidebarItem(new SidebarSeparator())
             ->addSidebarItem(
                 new SidebarLink(
-                    text:__('Cerrar sesi�n'),
+                    text:__('Cerrar sesión'),
                     href: route('logout'),
                     iconComponent: Heroicons::LOGOUT,
                     current: false,
                 )
-            )
+            )->getSidebarItems()
         );
 
         return $next($request);
